@@ -23,17 +23,23 @@ def get_names(card_list):
 # Takes in name of series (booster, SD etc) and card_List which is retrieved from get_card_list method
 def write_to_file(series_name, card_list):
     card_name = card_list.find_all('div', class_="card_name")
+    text_file = open(f'{series_name}.txt', 'w')
     for cards in card_name:
-        with open(f'{series_name}.txt', 'w') as f:
-            f.write(cards.text)
+        text_file.write(cards.text + "\n")
+    text_file.close()
+    return None
 
 
 # Main method to run continuously
-if __name__ == "__main__":
-    while True:
-        card_list = get_card_list(html_text)
-        # get_names(card_list)
-        write_to_file("BT_04", card_list)
-        # time_in_minutes = 10
-        # print(f'Waiting {time_in_minutes} minutes...')
-        # time.sleep(60*time_in_minutes)
+# if __name__ == "__main__":
+#     while True:
+#         card_list = get_card_list(html_text)
+#         # get_names(card_list)
+#         write_to_file("BT_04", card_list)
+#         # time_in_minutes = 10
+#         # print(f'Waiting {time_in_minutes} minutes...')
+#         # time.sleep(60*time_in_minutes)
+
+card_list = get_card_list(html_text)
+# get_names(card_list)
+write_to_file("BT_04", card_list)
